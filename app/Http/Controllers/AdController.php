@@ -10,7 +10,15 @@ class AdController extends Controller
 {
     public function index(Request $request)
     {
-        return Ad::all()
+        $collection = null;
+
+        if ($request->query('type')) {
+            $collection = Ad::where('type', $request->query('type'))->get();
+        } else {
+            $collection = Ad::all();
+        }
+
+        return $collection
             ->map(function (Ad $ad) {
                 return [
                     'id' => $ad->id,
