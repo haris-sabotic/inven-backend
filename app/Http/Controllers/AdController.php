@@ -12,8 +12,10 @@ class AdController extends Controller
     {
         $collection = null;
 
-        if ($request->query('type')) {
-            $collection = Ad::where('type', $request->query('type'))->get();
+        if ($request->query('types')) {
+            $types = explode(',', $request->query('types'));
+
+            $collection = Ad::whereIn('type', $types)->get();
         } else {
             $collection = Ad::all();
         }

@@ -58,9 +58,11 @@ class UserAdController extends Controller
     {
         $collection = null;
 
-        if ($request->query('type')) {
+        if ($request->query('types')) {
+            $types = explode(',', $request->query('types'));
+
             $collection = Ad::where('company_id', $request->user()->id)
-                ->where('type', $request->query('type'))
+                ->whereIn('type', $types)
                 ->get();
         } else {
             $collection = Ad::where('company_id', $request->user()->id)->get();
