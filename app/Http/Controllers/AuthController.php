@@ -22,6 +22,7 @@ class AuthController extends Controller
         $user->name = $validated['name'];
         $user->email = $validated['email'];
         $user->password = Hash::make($validated['password']);
+        $user->photo = ($validated['type'] == 'individual') ? 'images/default_individual_photo.png' : 'images/default_company_photo.png';
         $user->save();
 
         $token = $user->createToken('authToken')->plainTextToken;
