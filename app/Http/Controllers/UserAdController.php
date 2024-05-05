@@ -27,6 +27,23 @@ class UserAdController extends Controller
         ];
     }
 
+    public function applied(Ad $ad, Request $request)
+    {
+        $application = Application::where('user_id', $request->user()->id)
+            ->where('ad_id', $ad->id)
+            ->first();
+
+        if ($application == null) {
+            return [
+                'applied' => false
+            ];
+        }
+
+        return [
+            'applied' => true
+        ];
+    }
+
     public function create(Request $request)
     {
         $validated = $request->validate([

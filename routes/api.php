@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::middleware('user-type:individual')->group(function () {
         Route::post('/user/ads/{ad}/apply', [UserAdController::class, 'apply']);
+        Route::get('/user/ads/{ad}/applied', [UserAdController::class, 'applied']);
     });
 
     Route::middleware('user-type:company')->group(function () {
