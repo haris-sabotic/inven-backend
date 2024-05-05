@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('type');
             $table->string('name');
             $table->text('description');
-            $table->string('photo')->default('default_ad_photo.png');
+            $table->string('photo')->default('images/default_ad_photo.png');
             $table->integer('max_available_positions')->nullable();
 
             $table->unsignedBigInteger('company_id');

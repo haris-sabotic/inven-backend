@@ -37,6 +37,7 @@ class UserAdController extends Controller
         ]);
 
         $ad = new Ad();
+        $ad->company_id = $request->user()->id;
         $ad->type = $validated['type'];
         $ad->name = $validated['name'];
         $ad->description = $validated['description'];
@@ -52,6 +53,10 @@ class UserAdController extends Controller
         }
 
         $ad->save();
+
+        return [
+            'message' => 'Success.'
+        ];
     }
 
     public function index(Request $request)
